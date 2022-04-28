@@ -1,0 +1,74 @@
+﻿@model IEnumerable<TallerFinal.Models.Proveedores>
+
+@{
+    ViewData["Title"] = "Lista de Proveedores";
+}
+
+<h1>Lista de Proveedores</h1>
+
+<div class="container">      
+        <a asp-action="Crear" asp-controller="Proveedores" class="btn btn-success btn-sm">Crear Proveedores</a>
+        <a asp-action="Inicio" asp-controller="Principal" class="btn btn-secondary btn-sm">Inicio</a>
+</div>
+<div class="container">
+    <div class="row">
+        <table id="example" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nit)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Empresa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Direccion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>Nombre Contacto</th>                                
+                    <th>
+                        @Html.DisplayNameFor(model => model.Telefono)
+                    </th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nit)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Direccion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreContacto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            <a asp-action="Editar" asp-route-id="@item.IdProveedor" class="btn btn-primary btn-sm">
+                                 <i class="bi bi-pencil-square"></i>
+                            </a> |
+                            <a asp-action="Detalle" asp-route-id="@item.IdProveedor" class="btn btn-warning btn-sm">
+                                <i class="bi bi-eye"></i>
+                            </a> |
+                            <a asp-action="Eliminar" asp-route-id="@item.IdProveedor" class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash3-fill"></i>
+                            </a>
+                        </td>
+                    </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

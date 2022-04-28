@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TallerFinal.Models.Clientes>
+
+@{
+    ViewData["Title"] = "Lista de Clientes";
+}
+
+<h3 class="text-center">Listado de Clientes</h3>
+<hr />
+<div class="container">
+        <a asp-action="Crear" asp-controller="Clientes" class="btn btn-primary btn-sm">Crear Usuario</a>
+        <a asp-action="Inicio" asp-controller="Principal" class="btn btn-secondary btn-sm">Inicio</a>
+</div>
+<br />
+<div class="container">
+    <div class="row"> 
+        <div class= "col-lg-12">
+            <table id="example" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Apellidos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Documento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Direccion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Celular)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model) {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Apellidos)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Documento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Direccion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Celular)
+                                </td>
+                                <td>
+                                    <a asp-action="Editar" asp-route-id="@item.IdCliente" class="btn btn-primary btn-sm">
+                                         <i class="bi bi-pencil-square"></i>
+                                    </a> |
+                                    <a asp-action="Detalle" asp-route-id="@item.IdCliente"class="btn btn-warning btn-sm">
+                                        <i class="bi bi-eye"></i>
+                                    </a> |
+                                    <a asp-action="Eliminar" asp-route-id="@item.IdCliente" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                    }
+                </tbody>
+            </table>  
+        </div>
+    </div>
+</div>

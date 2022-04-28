@@ -1,0 +1,93 @@
+﻿@model IEnumerable<TallerFinal.ClasesDTO.ProductosDTO>
+
+@{
+    ViewData["Title"] = "Lista de Productos";
+}
+
+<h3 class="text-center">Lista de Productos</h3>
+<hr />
+<div class="container">      
+        <a asp-action="Crear" asp-controller="Productos" class="btn btn-primary btn-sm">Crear Producto</a>
+        <a asp-action="Inicio" asp-controller="Principal" class="btn btn-secondary btn-sm">Inicio</a>
+</div>
+<br />
+<div class="container">
+        <table id="example" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Codigo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NombreProducto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ValorUnitario)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Iva)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cantidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Categoria)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Estado)
+                    </th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreProducto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorUnitario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Iva)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categoria)
+                    </td>
+                    <td>
+                            @if(item.Estado == 1)
+                            {
+                                <button class="btn btn-success" style="cursor:text">Stock</button>
+                            }else if (item.Estado == 0)
+                            {
+                                <button class="btn btn-danger" style="cursor:text">Sin Stock</button>
+                            }
+                        </td>
+                    <td>
+                        <a asp-action="Editar" asp-route-id="@item.IdProducto" class="btn btn-primary btn-sm">
+                            <i class="bi bi-pencil-square"></i>
+                        </a> |
+                        <a asp-action="Detalle" asp-route-id="@item.IdProducto" class="btn btn-warning btn-sm">
+                            <i class="bi bi-eye"></i>
+                        </a> |
+                        <a asp-action="Eliminar" asp-route-id="@item.IdProducto" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash3-fill"></i>
+                        </a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+ </div>
